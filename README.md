@@ -82,5 +82,18 @@ python -m st3215.rotate_revolutions \
   --rotations 5 --direction cw --rpm 20
 ```
 
-Press `Control+C` to request an emergency stop during continuous or multi-revolution commands.
+Perform one exact clockwise revolution at 20 RPM, show live feedback, print a
+final health report, and save every sample to CSV:
 
+```bash
+python -m st3215.rotate_with_feedback \
+  --port "$ST3215_PORT" --id "$ST3215_ID" \
+  --rotations 1 --direction cw --rpm 20 \
+  --csv st3215-feedback.csv
+```
+
+The report includes position, speed, voltage, temperature, current, estimated
+load, movement state, protection status, and peak/minimum values recorded during
+the rotation. One revolution at 20 RPM should take approximately three seconds.
+
+Press `Control+C` to request an emergency stop during continuous or multi-revolution commands.
